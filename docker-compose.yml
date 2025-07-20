@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - '4566:4566'
+    environment:
+      - SERVICES=dynamodb,lambda
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  backend:
+    build: ./backend
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - DYNAMODB_ENDPOINT=http://localstack:4566
+    depends_on:
+      - localstack
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./backend:/app
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    # volumes:
+    #   - ./frontend:/app
+    stdin_open: true
+    tty: true

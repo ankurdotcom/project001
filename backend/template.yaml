@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Service Bidder Lambda API
+Resources:
+  ServiceRequestApi:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/index.handler
+      Runtime: nodejs20.x
+      CodeUri: .
+      Environment:
+        Variables:
+          REQUESTS_TABLE: ServiceRequests
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /requests
+            Method: post
+  ServiceRequestsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ServiceRequests
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
