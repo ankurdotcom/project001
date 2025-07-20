@@ -1,3 +1,20 @@
+## Running with Tilt
+
+Tilt provides a fast, modern local development experience. It watches your code and automatically updates your running services.
+
+### Prerequisites
+- Docker running
+- [Tilt installed](https://docs.tilt.dev/install.html)
+
+### Usage
+1. Start Tilt:
+   ```bash
+   tilt up
+   ```
+2. Open the Tilt web UI (usually at http://localhost:10350) to monitor and manage your services.
+3. Tilt will use your `docker-compose.yml` to start all services and show logs/status for each.
+
+You can stop Tilt with `tilt down`.
 # project001
 # Flexible Service Bidder - Production-Ready MVP
 
