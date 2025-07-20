@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import AWS from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';

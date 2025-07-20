@@ -1,3 +1,16 @@
+## Environment Setup
+
+Before running the application, create a `.env` file in the project root with the following content:
+
+```
+AWS_ACCESS_KEY_ID=test
+AWS_SECRET_ACCESS_KEY=test
+AWS_REGION=us-east-1
+DYNAMODB_ENDPOINT=http://localstack:4566
+```
+
+This file is required for both local development and CLI tools to work correctly with LocalStack and the backend.
+
 ## Running with Tilt
 
 Tilt provides a fast, modern local development experience. It watches your code and automatically updates your running services.
